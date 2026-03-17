@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Shanzida Trading Bot</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h2>Shanzida Trading Assistant</h2>
+
+<!-- TradingView Chart -->
+<div class="tradingview-widget-container">
+  <iframe src="https://s.tradingview.com/widgetembed/?symbol=FX:USDJPY&interval=1"
+  width="100%" height="400"></iframe>
+</div>
+
+<!-- Chat Box -->
+<div class="chatbox">
+<div id="messages"></div>
+
+<input id="userInput" placeholder="Ask Shanzida about market...">
+<button onclick="sendMessage()">Send</button>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
