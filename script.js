@@ -1,30 +1,30 @@
-function sendMessage(){
+
+async function sendMessage(){
 
 let input = document.getElementById("userInput").value
 let messages = document.getElementById("messages")
 
 messages.innerHTML += "<p><b>You:</b> "+input+"</p>"
 
-let reply = analyzeMarket(input)
+const response = await fetch("https://api.openai.com/v1/chat/completions",{
+method:"POST",
+headers:{
+"Content-Type":"application/json",
+"Authorization":"Bearer YOUR_API_KEY"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
+},
+body:JSON.stringify({
+model:"gpt-4o-mini",
+messages:[
+{role:"system",content:"You are Shanzida, a trading assistant."},
+{role:"user",content:input}
+]
+})
+})
 
-messages.innerHTML += "<p><b>Shanzida:</b> "+reply+"</p>"
+const data = await response.json()
 
-}
+let reply = data.choices[0].message.content
 
-function analyzeMarket(text){
-
-let rand = Math.random()
-
-if(rand > 0.6){
-return "Market going UP probability 80%"
-}
-
-else if(rand > 0.3){
-return "Market going DOWN probability 75%"
-}
-
-else{
-return "Market sideways wait for confirmation"
-}
+messages.innerHTML += "<p><b>Shanzida:</b> "+reply+"</p>
 
 }
